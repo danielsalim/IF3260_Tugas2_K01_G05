@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>3D WebGL Hollow Object</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://openclipart.org/image/800px/289297" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="gl-canvas-container">
+        <canvas id="gl-canvas" width="500" height="500">
+            Your browser does not support WebGL.
+        </canvas>
+    </div>
+    <div class="menu-container">
+        <h1>3D WebGL Hollow Object</h1>
+        <div class="button-container">
+            <input type="submit" name="help" value="Help" onclick="window.open('./help.html', '_blank')">
+            <input type="submit" name="reset" value="Reset" onclick="">
+            <h3>Save or Load Model</h3>
+            <input type="submit" name="save" value="Save" onclick="">
+            <input type="submit" name="load" value="Load" onclick="">
+        </div>
+        <div class="option-container">
+            <h3>Projection</h3>
+            <input 
+                type="radio" 
+                name="projection" 
+                value="orthographic" 
+                id="orthographic" 
+                checked />
+            <label for="orthographic">Orthographic</label>
+            <input 
+                type="radio" 
+                name="projection" 
+                value="oblique" 
+                id="oblique" />
+            <label for="oblique">Oblique</label>
+            <input 
+                type="radio" 
+                name="projection" 
+                value="perspective" 
+                id="perspective" />
+            <label for="perspective">Perspective</label>
+            
+            <h3>Transformation</h3>
+            <label for="rotation-x">Rotate-X</label>
+            <output>(0)</output>
+            <input 
+                id="rotation-x"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="rotation-y">Rotate-Y</label>
+            <output>(0)</output>
+                <input 
+                id="rotation-y"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="rotation-z">Rotate-Z</label>
+            <output>(0)</output>
+            <input 
+                id="rotation-z"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <br>
+            <label for="translate-x">Translate-X</label>
+            <output>(0)</output>
+            <input 
+                id="translate-x"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-1"
+                max="1"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="translate-y">Translate-Y</label>
+            <output>(0)</output>
+            <input 
+                id="translate-y"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-1"
+                max="1"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="translate-z">Translate-Z</label>
+            <output>(0)</output>
+            <input 
+                id="translate-z"
+                type="range"
+                name="transformation"
+                value="0"
+                min="-1"
+                max="1"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <br>
+            <label for="scale-x">Scale-X</label>
+            <output>(1)</output>
+            <input 
+                id="scale-x"
+                type="range"
+                name="transformation"
+                value="1"
+                min="0"
+                max="2"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="scale-y">Scale-Y</label>
+            <output>(1)</output>
+            <input 
+                id="scale-y"
+                type="range"
+                name="transformation"
+                value="1"
+                min="0"
+                max="2"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="scale-z">Scale-Z</label>
+            <output>(1)</output>
+            <input 
+                id="scale-z"
+                type="range"
+                name="transformation"
+                value="1"
+                min="0"
+                max="2"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+
+            <h3>Camera View</h3>
+            <label for="camera-x">Rotate-X</label>
+            <output>(0)</output>
+            <input 
+                id="camera-x"
+                type="range"
+                name="camera"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="camera-y">Rotate-Y</label>
+            <output>(0)</output>
+            <input 
+                id="camera-y"
+                type="range"
+                name="camera"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <label for="camera-z">Rotate-Z</label>
+            <output>(0)</output>
+            <input 
+                id="camera-z"
+                type="range"
+                name="camera"
+                value="0"
+                min="-180"
+                max="180"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            <br>
+            <label for="radius">Radius</label>
+            <output>(0)</output>
+            <input 
+                id="radius"
+                type="range"
+                name="camera"
+                value="0"
+                min="0"
+                max="1"
+                step="0.1"
+                oninput="this.previousElementSibling.value = '(' + this.value + ')'" />
+            
+            <h3>Color</h3>
+            <input 
+                id="color"
+                type="color"
+                name="color"
+                value="#FFFFFF" />
+            <label for="color">Pick a color</label>
+
+            <h3>Shading</h3>
+            <input 
+                id="shading" 
+                type="checkbox" 
+                name="shading" 
+                value="flat" 
+                checked />
+            <label for="shading">Shading</label>
+        </div>
+    </div>
+</body>
+
+<script
+    type="text/javascript"
+    src="https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/SEVENTH_EDITION/CODE/Common/webgl-utils.js"
+></script>
+<script src="shader.js"></script>
+<script src="main.js"></script>
+
+</html>

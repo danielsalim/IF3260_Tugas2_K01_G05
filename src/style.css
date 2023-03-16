@@ -1,0 +1,21 @@
+body {
+    background-color: #e0e0e0;
+    font-family: cursive;
+}
+
+.gl-canvas-container {
+    float: left;
+    margin-right: 1%;
+}
+
+#gl-canvas {
+    background-color: #000;
+}
+
+.menu-container {
+    float: left;
+    padding: 0px 20px 20px 20px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+}
+
