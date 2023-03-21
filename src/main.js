@@ -57,7 +57,7 @@ function resetOptions() {
         projection : "orthogonal",  // orthogonal, oblique, perspective
         transformation : {
             translate   : [0, 0, 0],
-            rotate      : [Math.PI/4,Math.PI/4,0],
+            rotate      : [0, 0, 0],
             scale       : [1, 1, 1]
         },
         cameraView : {
@@ -70,13 +70,9 @@ function resetOptions() {
 }
 
 function main() {
-    // Initialize option state
-    resetOptions();
-    var transform_matrix = getTransformMatrix(
-        optionState.transformation.translate, 
-        optionState.transformation.scale, 
-        optionState.transformation.rotate
-    );
+    var transform_matrix;   // Transformation matrix
+    setListeners();         // Set listeners for UI
+    resetOptions();         // Initialize option state
 
     // Get A WebGL context
     var canvas = document.querySelector("#gl-canvas");
@@ -94,7 +90,7 @@ function main() {
     var positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-    // Create a buffer for the indices
+    // Create a buffer for the indices (the order the vertices should be drawn in)
     var indexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
 
@@ -113,29 +109,27 @@ function main() {
     window.requestAnimationFrame(render);
 
     function render() {
-        if (optionState.shader) {
-            var program = lightingProgram;
-            var positionLocation = lightingPositionLocation;
-            var colorLocation = lightingColorLocation;
-            var transformMatrixLocation = lightingTransformMatrixLocation;
-            var projectionMatrixLocation = lightingProjectionMatrixLocation;
-            var fudgeFactorLocation = lightingFudgeFactorLocation;
-        }
-        else {
-            var program = flatProgram;
-            var positionLocation = flatPositionLocation;
-            var colorLocation = flatColorLocation;
-            var transformMatrixLocation = flatTransformMatrixLocation;
-            var projectionMatrixLocation = flatProjectionMatrixLocation;
-            var fudgeFactorLocation = flatFudgeFactorLocation;
-        }
+        // Set the transformation matrix variable
+        transform_matrix = getTransformMatrix(
+            optionState.transformation.translate, 
+            optionState.transformation.scale, 
+            optionState.transformation.rotate
+        );
 
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.enable(gl.DEPTH_TEST);
-        gl.enable(gl.CULL_FACE);
+        // Set varibles based on shader switch state
+        var program                     = optionState.shader ? lightingProgram                  : flatProgram;
+        var positionLocation            = optionState.shader ? lightingPositionLocation         : flatPositionLocation;
+        var colorLocation               = optionState.shader ? lightingColorLocation            : flatColorLocation;
+        var transformMatrixLocation     = optionState.shader ? lightingTransformMatrixLocation  : flatTransformMatrixLocation;
+        var projectionMatrixLocation    = optionState.shader ? lightingProjectionMatrixLocation : flatProjectionMatrixLocation;
+        var fudgeFactorLocation         = optionState.shader ? lightingFudgeFactorLocation      : flatFudgeFactorLocation;
 
-        // Tell it to use our program (pair of shaders)
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);    // Clear the canvas
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
+        gl.enable(gl.DEPTH_TEST);                               // Enable depth buffering
+        gl.enable(gl.CULL_FACE);                                // Enable backface culling
+
+        // Use the program (pair of shaders)
         gl.useProgram(program);
 
         // Turn on the attribute
@@ -143,20 +137,22 @@ function main() {
         gl.enableVertexAttribArray(positionLocation);
         gl.uniformMatrix4fv(transformMatrixLocation, false, new Float32Array(transform_matrix));
         gl.uniform3f(colorLocation, optionState.color[0], optionState.color[1], optionState.color[2]);
-
         if (optionState.projection == "perspective") {
             gl.uniform1f(fudgeFactorLocation, 1.0);
         } else {
             gl.uniform1f(fudgeFactorLocation, 0.0);
         }
-
         var projection_matrix = getProjectionMatrix(optionState.projection, optionState.cameraView.radius);
         gl.uniformMatrix4fv(projectionMatrixLocation, false, new Float32Array(projection_matrix));
 
+        // Bind the position buffer
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(optionState.model.vertices), gl.STATIC_DRAW);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(optionState.model.indices), gl.STATIC_DRAW);
 
+        // Draw the geometry
         gl.drawElements(gl.TRIANGLES, optionState.model.indices.length, gl.UNSIGNED_SHORT, 0);
+        
+        // Render again
         window.requestAnimationFrame(render);
     }
 }

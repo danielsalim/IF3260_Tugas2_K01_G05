@@ -24,7 +24,7 @@
         <h1>3D WebGL Hollow Object</h1>
         <div class="button-container">
             <input type="submit" class="button_menu" name="help" value="Help" onclick="window.open('./help.html', '_blank')">
-            <input type="submit" class="button_menu" name="reset" value="Reset" onclick="">
+            <input type="submit" class="button_menu" name="reset" value="Reset" onclick="resetButtonClicked()">
             <input type="submit" class="button_menu" name="save" value="Save" onclick="">
             <input type="submit" class="button_menu" name="load" value="Load" onclick="">
         </div>
@@ -227,7 +227,7 @@
                     <label class="switch">
                         <input id="shading" type="checkbox" name="shading" value="flat">
                         <span class="slider round"></span>
-                      </label>
+                    </label>
             </div>
         </div>
     </div>
@@ -238,6 +238,7 @@
     src="https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/SEVENTH_EDITION/CODE/Common/webgl-utils.js"
 ></script>
 <script src="utils/util.js"></script>
+<script src="utils/listener.js"></script>
 <script src="shader.js"></script>
 <script src="main.js"></script>
 
