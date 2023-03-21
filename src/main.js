@@ -1,5 +1,51 @@
 var optionState;
-var model;
+var model = {
+    vertices : [
+        // Front face
+        -0.5, -0.5,  0.5,
+        0.5, -0.5,  0.5,
+        0.5,  0.5,  0.5,
+        -0.5,  0.5,  0.5,
+
+        // Back face
+        -0.5, -0.5, -0.5,
+        -0.5,  0.5, -0.5,
+        0.5,  0.5, -0.5,
+        0.5, -0.5, -0.5,
+
+        // Top face
+        -0.5,  0.5, -0.5,
+        -0.5,  0.5,  0.5,
+        0.5,  0.5,  0.5,
+        0.5,  0.5, -0.5,
+
+        // Bottom face
+        -0.5, -0.5, -0.5,
+        0.5, -0.5, -0.5,
+        0.5, -0.5,  0.5,
+        -0.5, -0.5,  0.5,
+
+        // Right face
+        0.5, -0.5, -0.5,
+        0.5,  0.5, -0.5,
+        0.5,  0.5,  0.5,
+        0.5, -0.5,  0.5,
+
+        // Left face
+        -0.5, -0.5, -0.5,
+        -0.5, -0.5,  0.5,
+        -0.5,  0.5,  0.5,
+        -0.5,  0.5, -0.5,
+    ],
+    indices : [
+        0,  1,  2,      0,  2,  3,    // front
+        4,  5,  6,      4,  6,  7,    // back
+        8,  9,  10,     8,  10, 11,   // top
+        12, 13, 14,     12, 14, 15,   // bottom
+        16, 17, 18,     16, 18, 19,   // right
+        20, 21, 22,     20, 22, 23,   // left
+    ],
+}
 // model = {
 //     vertices : [],
 //     indices : [],
@@ -7,15 +53,15 @@ var model;
 
 function resetOptions() {
     optionState = {
-        model : model,              // cube, tetrahedral, orderly_tangle_triangles
+        model : model,              // cube, pyramid, object3
         projection : "orthogonal",  // orthogonal, oblique, perspective
         transformation : {
-            translate : [0, 0, 0],
-            rotate : [0, 0, Math.PI/4],
-            scale : [1, 1, 1]
+            translate   : [0, 0, 0],
+            rotate      : [Math.PI/4,Math.PI/4,0],
+            scale       : [1, 1, 1]
         },
         cameraView : {
-            rotate : [0, 0, Math.PI/4],
+            rotate : [0, 0, 0],
             radius : 2,
         },
         shader : true,
@@ -114,3 +160,5 @@ function main() {
         window.requestAnimationFrame(render);
     }
 }
+
+main();
