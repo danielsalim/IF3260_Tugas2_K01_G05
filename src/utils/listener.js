@@ -1,18 +1,5 @@
 function handleClick(button) {
-    const buttons = document.querySelectorAll('.button_black');
-    if (button.classList.contains("active")) {
-      button.classList.remove("active");
-      button.classList.add("disabled");
-    } else {
-      buttons.forEach(btn => {
-        if (btn.classList.contains('active')) {
-          btn.classList.remove('active');
-          btn.classList.add('disabled');
-        }
-      });
-      button.classList.add("active");
-      button.classList.remove("disabled");
-    }
+    document.querySelectorAll('.button_black');
 }
 
 function setListeners() {
@@ -63,19 +50,77 @@ function setListeners() {
 
 
     // Color
-    // TODO: Add listener for color buttons
-
+    document.getElementById("color").addEventListener("input", function(e) {
+        // Extract the individual color components and convert to decimal
+        var r = parseInt(e.target.value.substring(1, 3), 16) / 255;
+        var g = parseInt(e.target.value.substring(3, 5), 16) / 255;
+        var b = parseInt(e.target.value.substring(5, 7), 16) / 255;
+    
+        // Assign the new color values to the optionState object
+        optionState.model.color[0] = r;
+        optionState.model.color[1] = g;
+        optionState.model.color[2] = b;
+    
+        console.log("color: " + optionState.color);
+    });
 
     // Shading
-    // TODO: Add listener for shading buttons
+    document.getElementById("shading").addEventListener("click", function(e) {
+        optionState.shader = !optionState.shader;
+        console.log("shading: " + optionState.shader);
+    });
 
 
     // Object Selection
-    // TODO: Add listener for object selection buttons
+    document.getElementById("cube").addEventListener("click", function(e) {
+        handleClick(e.target);
+        optionState.model = cube;
+        console.log("object: " + optionState.object);
+        resetButtonClicked();
+    });
+
+    document.getElementById("pyramid").addEventListener("click", function(e) {
+        handleClick(e.target);
+        optionState.model = pyramid;
+        console.log("object: " + optionState.object);
+        resetButtonClicked();
+    });
+
+    document.getElementById("interlockingcube").addEventListener("click", function(e) {
+        handleClick(e.target);
+        optionState.model = interlockingcube;
+        console.log("object: " + optionState.object);
+        resetButtonClicked();
+    });
 
 }
 
 function resetButtonClicked() {
-    resetOptions();
+    optionState.projection = "orthogonal";
+    optionState.transformation.rotate = [0, 0, 0];
+    optionState.transformation.translate = [0, 0, 0];
+    optionState.transformation.scale = [1, 1, 1];
+    optionState.cameraView.rotate = [0, 0, 0];
+    optionState.cameraView.radius = 2;
+    optionState.shader = true;
+    optionState.model.color = [1, 1, 1];
+
+    document.getElementById("orthographic").checked = true;
+    document.getElementById("rotation-x").value = 0;
+    document.getElementById("rotation-y").value = 0;
+    document.getElementById("rotation-z").value = 0;
+    document.getElementById("translate-x").value = 0;
+    document.getElementById("translate-y").value = 0;
+    document.getElementById("translate-z").value = 0;
+    document.getElementById("scale-x").value = 1;
+    document.getElementById("scale-y").value = 1;
+    document.getElementById("scale-z").value = 1;
+    document.getElementById("camera-x").value = 0;
+    document.getElementById("camera-y").value = 0;
+    document.getElementById("camera-z").value = 0;
+    document.getElementById("radius").value = 2;
+    document.getElementById("shading").checked = true;
+    document.getElementById("color").value = "#ffffff";
+
     console.log(optionState);
 }
