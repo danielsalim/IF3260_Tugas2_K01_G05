@@ -136,22 +136,6 @@ input:checked + .slider:before {
   color: white;
 }
 
-.button_black.active {
-  background-color: #acacac;
-  color: white;
-}
-
-.button_black.disabled {
-  background-color: #343A40;
-  color: rgb(255, 255, 255);
-  border: 2px solid #555555;
-}
-
-.button_black.disabled:hover {
-  background-color:#7a7a7a;
-  color: white;
-}
-
 input[type=range]::-webkit-slider-runnable-track {
   background-color: rgb(210, 210, 210);
   border: 2px solid #212121;
