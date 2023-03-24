@@ -113,7 +113,7 @@ function getTransformMatrix(translation, scale, rotation) {
 }
 
 function getCameraViewMatrix(rotation, radius) {
-    var rotationMatrix = getRotationMatrix(rotation[0], rotation[1], rotation[2]);
+    var rotationMatrix = getRotationMatrix(rotation[0], rotation[1] * Math.PI / 180, rotation[2]);
     var translationMatrix = getTranslationMatrix(0, 0, radius);
     return inverseMatrix(multiplyMatrix(rotationMatrix, translationMatrix));
 }

@@ -114,8 +114,8 @@ function resetButtonClicked() {
     optionState.transformation.rotate = [0, 0, 0];
     optionState.transformation.translate = [0, 0, 0];
     optionState.transformation.scale = [1, 1, 1];
-    optionState.cameraView.rotate = [0, 0, 0];
-    optionState.cameraView.radius = 2;
+    optionState.cameraView.rotate = [-3, -53, 2];
+    optionState.cameraView.radius = 0.1;
     optionState.shader = true;
     optionState.model.color = [1, 1, 1];
     uiReset();
