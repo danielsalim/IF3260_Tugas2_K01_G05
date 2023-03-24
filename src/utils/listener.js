@@ -4,11 +4,11 @@ function handleClick(button) {
 
 function selectProjection(e){
     var selectProjection = document.querySelector("input[name='projectionChoice']:checked").value;
-    if(selectProjection == "orthogonal"){
+    if(selectProjection === "orthogonal"){
         optionState.projection = "orthogonal";
-    }else if(selectProjection == "oblique"){
+    }else if(selectProjection === "oblique"){
         optionState.projection = "oblique";
-    }else{
+    }else if(selectProjection === "perspective"){
         optionState.projection = "perspective";
     }
 }
@@ -16,7 +16,7 @@ function selectProjection(e){
 function setListeners() {
     // Projection
     // TODO: Add listener for projection buttons
-    document.elements["projectionChoice"].forEach((item, i) => {
+    document.getElementsByName("projectionChoice").forEach((item, i) => {
         item.onclick = selectProjection;
     });
 
