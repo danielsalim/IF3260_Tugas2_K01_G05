@@ -67,7 +67,23 @@ function setListeners() {
 
     // Camera View and Position
     // TODO: Add listener for camera view and position sliders
+    document.getElementById("camera-x").addEventListener("input", function(e){
+       optionState.cameraView.rotate[0] = e.target.value;
+       console.log("camera-x: " + optionState.cameraView.rotate[0]);
+    });
+    document.getElementById("camera-y").addEventListener("input", function(e){
+        optionState.cameraView.rotate[1] = e.target.value;
+        console.log("camera-y: " + optionState.cameraView.rotate[1]);
+    });
+    document.getElementById("camera-z").addEventListener("input", function(e){
+        optionState.cameraView.rotate[2] = e.target.value;
+        console.log("camera-z: " + optionState.cameraView.rotate[2]);
+    });
 
+    document.getElementById("radius").addEventListener("input", function(e){
+        optionState.cameraView.radius = e.target.value;
+        console.log("camera radius: " + optionState.cameraView.radius);
+    });
 
     // Color
     document.getElementById("color").addEventListener("input", function(e) {
