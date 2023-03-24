@@ -145,3 +145,38 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
   margin-top: -3px;
 }
+
+
+
+
+/* HELP PAGE */
+.help-container {
+  text-align: center;
+  margin: 0 auto;
+  align-content: start;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #343A40;
+  width: 700px;
+}
+
+.help-container h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.help-container h2 {
+  display: flex;
+  justify-content: left;
+  padding-left: 10px;
+}
+
+.help-container p {
+  display: flex;
+  justify-content: left;
+  padding-left: 25px;
+}
+
+hr {
+  margin: 3px 0px;
+}
