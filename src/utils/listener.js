@@ -2,24 +2,7 @@ function handleClick(e) {
     document.querySelectorAll('.button_black');
 }
 
-function selectProjection(e){
-    var selectProjection = document.querySelector("input[name='projectionChoice']:checked").value;
-    if(selectProjection === "orthogonal"){
-        optionState.projection = "orthogonal";
-    }else if(selectProjection === "oblique"){
-        optionState.projection = "oblique";
-    }else if(selectProjection === "perspective"){
-        optionState.projection = "perspective";
-    }
-}
-
 function setListeners() {
-    // Projection
-    // TODO: Add listener for projection buttons
-    document.getElementsByName("projectionChoice").forEach((item, i) => {
-        item.onclick = selectProjection;
-    });
-
 
     // Transformation
     document.getElementById("rotation-x").addEventListener("input", function(e) {
@@ -136,7 +119,7 @@ function resetButtonClicked() {
     optionState.transformation.rotate = [0, 0, 0];
     optionState.transformation.translate = [0, 0, 0];
     optionState.transformation.scale = [1, 1, 1];
-    optionState.cameraView.rotate = [-3, -53, 2];
+    optionState.cameraView.rotate = [0, 0, 0];
     optionState.cameraView.radius = 0.1;
     optionState.shader = true;
     optionState.model.color = [1, 1, 1];

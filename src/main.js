@@ -432,12 +432,25 @@ function initOptionState() {
             scale       : [1, 1, 1]
         },
         cameraView : {
-            rotate : [-3, -53, 2],
+            rotate : [0, 0, 0],
             radius : 0.1,
         },
         shader : true,
         center : [0.0, 0.0, 0.0]
     };
+}
+
+//constant needed for projections
+const setOrthogonal = () => {
+    optionState.projection = "orthogonal";
+}
+
+const setOblique = () => {
+    optionState.projection = "oblique";
+}
+
+const setPerspective = () => {
+    optionState.projection = "perspective";
 }
 
 function main() {
