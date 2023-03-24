@@ -112,7 +112,7 @@ function getRotationMatrix(x, y, z) {
 function getTransformMatrix(translation, scale, rotation) {
     var translationMatrix = getTranslationMatrix(translation[0], translation[1], translation[2]);
     var scaleMatrix = getScaleMatrix(scale[0], scale[1], scale[2]);
-    var rotationMatrix = getRotationMatrix(rotation[0], rotation[1], rotation[2]);
+    var rotationMatrix = getRotationMatrix(rotation[0] * Math.PI / 180, rotation[1] * Math.PI / 180, rotation[2] * Math.PI / 180);
     return multiplyMatrix(multiplyMatrix(translationMatrix, rotationMatrix), scaleMatrix);
 }
 

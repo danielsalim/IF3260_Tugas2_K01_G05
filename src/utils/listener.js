@@ -2,69 +2,73 @@ function handleClick(e) {
     document.querySelectorAll('.button_black');
 }
 
+function updateLabelOutput(id) {
+    document.getElementById(id+"-out").innerHTML = "(" + document.getElementById(id).value + ")";
+}
+
 function setListeners() {
 
     // Transformation
     document.getElementById("rotation-x").addEventListener("input", function(e) {
-        optionState.transformation.rotate[0] = e.target.value * Math.PI / 180;   
+        optionState.transformation.rotate[0] = parseInt(e.target.value);   
         console.log("rotation-x: " + optionState.transformation.rotate[0]);
     });
     document.getElementById("rotation-y").addEventListener("input", function(e) {
-        optionState.transformation.rotate[1] = e.target.value * Math.PI / 180;
+        optionState.transformation.rotate[1] = parseInt(e.target.value);
         console.log("rotation-y: " + optionState.transformation.rotate[1]);
     });
     document.getElementById("rotation-z").addEventListener("input", function(e) {
-        optionState.transformation.rotate[2] = e.target.value * Math.PI / 180;
+        optionState.transformation.rotate[2] = parseInt(e.target.value);
         console.log("rotation-z: " + optionState.transformation.rotate[2]);
     });
     document.getElementById("translate-x").addEventListener("input", function(e) {
-        optionState.transformation.translate[0] = e.target.value;
+        optionState.transformation.translate[0] = parseFloat(e.target.value);
         optionState.center[0] = e.target.value;
         console.log("translate-x: " + optionState.transformation.translate[0]);
         console.log("center: " + optionState.center);
     });
     document.getElementById("translate-y").addEventListener("input", function(e) {
-        optionState.transformation.translate[1] = e.target.value;
+        optionState.transformation.translate[1] = parseFloat(e.target.value);
         optionState.center[1] = e.target.value;
         console.log("translate-y: " + optionState.transformation.translate[1]);
         console.log("center: " + optionState.center);
     });
     document.getElementById("translate-z").addEventListener("input", function(e) {
-        optionState.transformation.translate[2] = e.target.value;
+        optionState.transformation.translate[2] = parseFloat(e.target.value);
         optionState.center[2] = e.target.value;
         console.log("translate-z: " + optionState.transformation.translate[2]);
         console.log("center: " + optionState.center);
     });
     document.getElementById("scale-x").addEventListener("input", function(e) {
-        optionState.transformation.scale[0] = e.target.value;
+        optionState.transformation.scale[0] = parseFloat(e.target.value);
         console.log("scale-x: " + optionState.transformation.scale[0]);
     });
     document.getElementById("scale-y").addEventListener("input", function(e) {
-        optionState.transformation.scale[1] = e.target.value;
+        optionState.transformation.scale[1] = parseFloat(e.target.value);
         console.log("scale-y: " + optionState.transformation.scale[1]);
     });
     document.getElementById("scale-z").addEventListener("input", function(e) {
-        optionState.transformation.scale[2] = e.target.value;
+        optionState.transformation.scale[2] = parseFloat(e.target.value);
         console.log("scale-z: " + optionState.transformation.scale[2]);
     });
 
     // Camera View and Position
     // TODO: Add listener for camera view and position sliders
     document.getElementById("camera-x").addEventListener("input", function(e){
-       optionState.cameraView.rotate[0] = e.target.value;
+       optionState.cameraView.rotate[0] = parseInt(e.target.value);
        console.log("camera-x: " + optionState.cameraView.rotate[0]);
     });
     document.getElementById("camera-y").addEventListener("input", function(e){
-        optionState.cameraView.rotate[1] = e.target.value;
+        optionState.cameraView.rotate[1] = parseInt(e.target.value);
         console.log("camera-y: " + optionState.cameraView.rotate[1]);
     });
     document.getElementById("camera-z").addEventListener("input", function(e){
-        optionState.cameraView.rotate[2] = e.target.value;
+        optionState.cameraView.rotate[2] = parseInt(e.target.value);
         console.log("camera-z: " + optionState.cameraView.rotate[2]);
     });
 
     document.getElementById("radius").addEventListener("input", function(e){
-        optionState.cameraView.radius = e.target.value;
+        optionState.cameraView.radius = parseFloat(e.target.value);
         console.log("camera radius: " + optionState.cameraView.radius);
     });
 
@@ -127,27 +131,43 @@ function resetButtonClicked() {
     optionState.cameraView.radius = 0.1;
     optionState.shader = true;
     optionState.model.color = [1, 1, 1];
+    optionState.animation = false;
+    optionState.center = [0, 0, 0];
     uiReset();
-    document.getElementById("shading").checked = true;
     console.log(optionState);
 }
 
 function uiReset() {
     document.getElementById("orthogonal").checked = true;
     document.getElementById("rotation-x").value = 0;
+    updateLabelOutput("rotation-x", 0);
     document.getElementById("rotation-y").value = 0;
+    updateLabelOutput("rotation-y", 0);
     document.getElementById("rotation-z").value = 0;
+    updateLabelOutput("rotation-z", 0);
     document.getElementById("translate-x").value = 0;
+    updateLabelOutput("translate-x", 0);
     document.getElementById("translate-y").value = 0;
+    updateLabelOutput("translate-y", 0);
     document.getElementById("translate-z").value = 0;
+    updateLabelOutput("translate-z", 0);
     document.getElementById("scale-x").value = 1;
+    updateLabelOutput("scale-x", 1);
     document.getElementById("scale-y").value = 1;
+    updateLabelOutput("scale-y", 1);
     document.getElementById("scale-z").value = 1;
+    updateLabelOutput("scale-z", 1);
     document.getElementById("camera-x").value = 0;
+    updateLabelOutput("camera-x", 0);
     document.getElementById("camera-y").value = 0;
+    updateLabelOutput("camera-y", 0);
     document.getElementById("camera-z").value = 0;
-    document.getElementById("radius").value = 2;
+    updateLabelOutput("camera-z", 0);
+    document.getElementById("radius").value = 0.1;
+    updateLabelOutput("radius", 0.1);
     document.getElementById("color").value = "#ffffff";
+    document.getElementById("shading").checked = true;
+    document.getElementById("animation").checked = false;
 }
 
 // Add an event listener to the "save" button

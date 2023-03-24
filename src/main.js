@@ -493,24 +493,31 @@ function main() {
 
     window.requestAnimationFrame(render);
 
-    var incrX = 0.0075;
-    var incrY = 0.0075;
-    var incrZ = 0.0075;
+    var incrX = 0.5;
+    var incrY = 0.5;
+    var incrZ = 0.5;
 
     function render() {
         if (optionState.animation) {
-            if (optionState.transformation.rotate[0] == 180 || optionState.transformation.rotate[0] == -180) {
+            if (optionState.transformation.rotate[0] >= 180 || optionState.transformation.rotate[0] <= -180) {
                 incrX = -incrX;
             }
-            if (optionState.transformation.rotate[1] == 180 || optionState.transformation.rotate[1] == -180) {
+            if (optionState.transformation.rotate[1] >= 180 || optionState.transformation.rotate[1] <= -180) {
                 incrY = -incrY;
             }
-            if (optionState.transformation.rotate[2] == 180 || optionState.transformation.rotate[2] == -180) {
+            if (optionState.transformation.rotate[2] >= 180 || optionState.transformation.rotate[2] <= -180) {
                 incrZ = -incrZ;
             }
-            optionState.transformation.rotate[0] += incrX
-            optionState.transformation.rotate[1] += incrY
-            optionState.transformation.rotate[2] += incrZ
+            optionState.transformation.rotate[0] += incrX;
+            document.getElementById("rotation-x").value = optionState.transformation.rotate[0];
+            updateLabelOutput("rotation-x", optionState.transformation.rotate[0]);
+            optionState.transformation.rotate[1] += incrY;
+            document.getElementById("rotation-y").value = optionState.transformation.rotate[1];
+            updateLabelOutput("rotation-y", optionState.transformation.rotate[1]);
+            optionState.transformation.rotate[2] += incrZ;
+            document.getElementById("rotation-z").value = optionState.transformation.rotate[2];
+            updateLabelOutput("rotation-z", optionState.transformation.rotate[2]);
+            console.log(optionState.transformation.rotate);
         }
 
         // Set the transformation matrix variable
