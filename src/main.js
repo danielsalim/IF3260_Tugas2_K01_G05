@@ -289,10 +289,10 @@ interlockingcube =         // model/interlocking_cube.json
         0.1, 0.75, -0.5,
         -0.1, 0.75, -0.5,
 
-        -0.1, 0.75, -0.3,
-        0.1, 0.75, -0.3,
-        0.1, 0.75, 0.3,
-        -0.1, 0.75, 0.3,
+        -0.1, 0.55, -0.3,
+        0.1, 0.55, -0.3,
+        0.1, 0.55, 0.3,
+        -0.1, 0.55, 0.3,
 
 
         -0.1, -0.75, -0.5,
@@ -300,10 +300,10 @@ interlockingcube =         // model/interlocking_cube.json
         0.1, -0.75, 0.5,
         -0.1, -0.75, 0.5,
 
-        -0.1, -0.75, 0.3,
-        0.1, -0.75, 0.3,
-        0.1, -0.75, -0.3,
-        -0.1, -0.75, -0.3,
+        -0.1, -0.55, 0.3,
+        0.1, -0.55, 0.3,
+        0.1, -0.55, -0.3,
+        -0.1, -0.55, -0.3,
 
 
         -0.1, -0.75, -0.5,
@@ -436,7 +436,8 @@ function initOptionState() {
             radius : 0.1,
         },
         shader : true,
-        center : [0.0, 0.0, 0.0]
+        center : [0.0, 0.0, 0.0],
+        animation : false,
     };
 }
 
@@ -492,7 +493,26 @@ function main() {
 
     window.requestAnimationFrame(render);
 
+    var incrX = 0.0075;
+    var incrY = 0.0075;
+    var incrZ = 0.0075;
+
     function render() {
+        if (optionState.animation) {
+            if (optionState.transformation.rotate[0] == 180 || optionState.transformation.rotate[0] == -180) {
+                incrX = -incrX;
+            }
+            if (optionState.transformation.rotate[1] == 180 || optionState.transformation.rotate[1] == -180) {
+                incrY = -incrY;
+            }
+            if (optionState.transformation.rotate[2] == 180 || optionState.transformation.rotate[2] == -180) {
+                incrZ = -incrZ;
+            }
+            optionState.transformation.rotate[0] += incrX
+            optionState.transformation.rotate[1] += incrY
+            optionState.transformation.rotate[2] += incrZ
+        }
+
         // Set the transformation matrix variable
         transform_matrix = getTransformMatrix(
             optionState.transformation.translate, 

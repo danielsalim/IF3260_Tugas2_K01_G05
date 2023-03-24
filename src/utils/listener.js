@@ -89,6 +89,10 @@ function setListeners() {
         console.log("shading: " + optionState.shader);
     });
 
+    document.getElementById("animation").addEventListener("click", function(e) {
+        optionState.animation = !optionState.animation;
+        console.log("animation: " + optionState.animation);
+    });
 
     // Object Selection
     document.getElementById("cube").addEventListener("click", function(e) {
