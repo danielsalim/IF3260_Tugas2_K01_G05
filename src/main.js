@@ -432,8 +432,8 @@ function initOptionState() {
             scale       : [1, 1, 1]
         },
         cameraView : {
-            rotate : [0, 0, 0],
-            radius : 2,
+            rotate : [-3, -53, 2],
+            radius : 0.1,
         },
         shader : true,
     };
@@ -508,11 +508,11 @@ function main() {
         gl.uniformMatrix4fv(transformMatrixLocation, false, new Float32Array(transform_matrix));
         gl.uniform3f(colorLocation, optionState.model.color[0], optionState.model.color[1], optionState.model.color[2]);
         if (optionState.projection == "perspective") {
-            gl.uniform1f(fudgeFactorLocation, 1.0);
+            gl.uniform1f(fudgeFactorLocation, 1.25);
         } else {
             gl.uniform1f(fudgeFactorLocation, 0.0);
         }
-        var projection_matrix = getProjectionMatrix(optionState.projection, optionState.cameraView.radius);
+        var projection_matrix = multiplyMatrix(getProjectionMatrix(optionState.projection), getCameraViewMatrix(optionState.cameraView.rotate, optionState.cameraView.radius));
         gl.uniformMatrix4fv(projectionMatrixLocation, false, new Float32Array(projection_matrix));
 
         // Bind the position buffer
