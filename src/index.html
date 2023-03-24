@@ -23,10 +23,11 @@
     <div class="menu-container">
         <h1>3D WebGL Hollow Object</h1>
         <div class="button-container">
-            <input type="submit" class="button_menu" name="help" value="Help" onclick="window.open('./help.html', '_blank')">
-            <input type="submit" class="button_menu" name="reset" value="Reset" onclick="resetButtonClicked()">
-            <input type="submit" class="button_menu" name="save" value="Save" onclick="">
-            <input type="submit" class="button_menu" name="load" value="Load" onclick="">
+            <input type="submit" class="button_menu" name="help" value="Help" onclick="window.open('./help.html', '_blank')" style="width:70px">
+            <input type="submit" class="button_menu" name="reset" value="Reset" onclick="resetButtonClicked()" style="width:70px">
+            <input type="submit" class="button_menu" name="save" id="download" value="Save" onclick="save()" style="width:70px">
+            <label class="button_menu" for="fileinput" style="width:50px">Load</label>
+            <input type="file" class="button_menu" name="load" id="fileinput" value="Load" onchange="loadModel()" style="display:none">
         </div>
         <div class="option-container">
             <h3>Projection</h3>

@@ -1,4 +1,4 @@
-function handleClick(button) {
+function handleClick(e) {
     document.querySelectorAll('.button_black');
 }
 
@@ -118,8 +118,13 @@ function resetButtonClicked() {
     optionState.cameraView.radius = 2;
     optionState.shader = true;
     optionState.model.color = [1, 1, 1];
+    uiReset();
+    document.getElementById("shading").checked = true;
+    console.log(optionState);
+}
 
-    document.getElementById("orthographic").checked = true;
+function uiReset() {
+    document.getElementById("orthogonal").checked = true;
     document.getElementById("rotation-x").value = 0;
     document.getElementById("rotation-y").value = 0;
     document.getElementById("rotation-z").value = 0;
@@ -133,8 +138,79 @@ function resetButtonClicked() {
     document.getElementById("camera-y").value = 0;
     document.getElementById("camera-z").value = 0;
     document.getElementById("radius").value = 2;
-    document.getElementById("shading").checked = true;
     document.getElementById("color").value = "#ffffff";
-
-    console.log(optionState);
 }
+
+// Add an event listener to the "save" button
+const save = () => {
+    var elementFile = document.createElement('a');
+    var text = JSON.stringify(optionState);
+    var time = new Date().toLocaleString();
+    var fileName = 'model-' + time + '.json';
+
+    elementFile.setAttribute('href', 'data:text/json, ' + encodeURIComponent(text));
+    elementFile.setAttribute('download', fileName);
+
+    document.body.appendChild(elementFile);
+    elementFile.click();
+    document.body.removeChild(elementFile);
+};
+
+
+// Add an event listener to the "load" button
+const loadModel = () => {
+    var fileInput = document.getElementById("fileinput");
+    var file = fileInput.files[0];
+  
+    if (!file) {
+      alert("Load file gagal!");
+      return;
+    }
+  
+    var reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        var object = JSON.parse(e.target.result);
+      } catch (e) {
+        alert("Load file gagal!");
+        return;
+      }
+      // Load the object into the scene
+      optionState.model = {
+        vertices: object.model.vertices,
+        indices: object.model.indices,
+        color: object.model.color,
+      };
+
+      optionState.projection = object.projection;
+      
+      optionState.transformation = {
+        rotate: object.transformation.rotate,
+        translate: object.transformation.translate,
+        scale: object.transformation.scale,
+      };
+      
+      optionState.cameraView = {
+        rotate: object.cameraView.rotate,
+        radius: object.cameraView.radius,
+        };
+
+      optionState.shader = object.shader;
+      document.getElementById("shading").checked = object.shader;
+      uiReset();
+      // Redraw the scene with the new object
+  
+      // Bind the position buffer
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, optionState.model.vertices, gl.STATIC_DRAW);
+  
+      // Bind the index buffer
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, optionState.model.indices, gl.STATIC_DRAW);
+  
+      // Draw the geometry
+      gl.drawElements(gl.TRIANGLES, optionState.model.indices.length, gl.UNSIGNED_SHORT, 0);
+      alert("Load file berhasil!");
+    };
+    reader.readAsText(file);
+  };
