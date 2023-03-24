@@ -83,6 +83,9 @@ function getScaleMatrix(x, y, z) {
 }
 
 function getRotationMatrix(x, y, z) {
+    var objectCenter = optionState.center;
+    var translateToOriginMatrix = getTranslationMatrix(-objectCenter[0], -objectCenter[1], -objectCenter[2]);
+    var translateBackMatrix = getTranslationMatrix(objectCenter[0], objectCenter[1], objectCenter[2]);
     var xRotationMatrix = [
         1, 0, 0, 0,
         0, Math.cos(x), -Math.sin(x), 0,
@@ -101,7 +104,8 @@ function getRotationMatrix(x, y, z) {
         0, 0, 1, 0,
         0, 0, 0, 1
     ];
-    return multiplyMatrix(multiplyMatrix(xRotationMatrix, yRotationMatrix), zRotationMatrix);
+    var rotationMatrix = multiplyMatrix(multiplyMatrix(xRotationMatrix, yRotationMatrix), zRotationMatrix);
+    return multiplyMatrix(multiplyMatrix(translateToOriginMatrix, rotationMatrix), translateBackMatrix);
 }
 
 

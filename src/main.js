@@ -424,7 +424,7 @@ interlockingcube =         // model/interlocking_cube.json
 
 function initOptionState() {
     optionState = {
-        model : cube,            // cube, pyramid, interlocking_cube
+        model : interlockingcube,            // cube, pyramid, interlocking_cube
         projection : "orthogonal",  // orthogonal, oblique, perspective
         transformation : {
             translate   : [0, 0, 0],
@@ -436,6 +436,7 @@ function initOptionState() {
             radius : 0.1,
         },
         shader : true,
+        center : [0.0, 0.0, 0.0]
     };
 }
 

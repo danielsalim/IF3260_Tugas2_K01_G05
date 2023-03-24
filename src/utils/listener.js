@@ -36,15 +36,21 @@ function setListeners() {
     });
     document.getElementById("translate-x").addEventListener("input", function(e) {
         optionState.transformation.translate[0] = e.target.value;
+        optionState.center[0] = e.target.value;
         console.log("translate-x: " + optionState.transformation.translate[0]);
+        console.log("center: " + optionState.center);
     });
     document.getElementById("translate-y").addEventListener("input", function(e) {
         optionState.transformation.translate[1] = e.target.value;
+        optionState.center[1] = e.target.value;
         console.log("translate-y: " + optionState.transformation.translate[1]);
+        console.log("center: " + optionState.center);
     });
     document.getElementById("translate-z").addEventListener("input", function(e) {
         optionState.transformation.translate[2] = e.target.value;
+        optionState.center[2] = e.target.value;
         console.log("translate-z: " + optionState.transformation.translate[2]);
+        console.log("center: " + optionState.center);
     });
     document.getElementById("scale-x").addEventListener("input", function(e) {
         optionState.transformation.scale[0] = e.target.value;
