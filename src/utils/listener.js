@@ -183,6 +183,8 @@ const save = () => {
     document.body.appendChild(elementFile);
     elementFile.click();
     document.body.removeChild(elementFile);
+    console.log("Save file berhasil");
+
 };
 
 
@@ -226,20 +228,8 @@ const loadModel = () => {
 
       optionState.shader = object.shader;
       document.getElementById("shading").checked = object.shader;
-      uiReset();
-      // Redraw the scene with the new object
-  
-      // Bind the position buffer
-      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-      gl.bufferData(gl.ARRAY_BUFFER, optionState.model.vertices, gl.STATIC_DRAW);
-  
-      // Bind the index buffer
-      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, optionState.model.indices, gl.STATIC_DRAW);
-  
-      // Draw the geometry
-      gl.drawElements(gl.TRIANGLES, optionState.model.indices.length, gl.UNSIGNED_SHORT, 0);
-      alert("Load file berhasil!");
+      uiReset();      
+      console.log("Load berhasil");
     };
     reader.readAsText(file);
   };
