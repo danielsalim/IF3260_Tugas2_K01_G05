@@ -1,15 +1,15 @@
-
 var optionState;
-var cube, pyramid, interlockingcube = {
-    vertices : [],
-    indices : [],
-    color: [],
-};
 
-/* 
- * TESTING MODEL 
+/*
+ * STRUKTUR DATA MODEL
+ * model = {
+ *     vertices : [],
+ *     indices : [],
+ *     color: [],
+ * };
  */
 
+<<<<<<< HEAD
 // TO DO: cara nge fetch data model dari file json ke dalam variable model biar gak kopas kayak gini wkwk
 cube =                     // model/cube-EXAMPLE.json
 {
@@ -696,10 +696,12 @@ interlockingcube =         // model/interlocking_cube.json
         1.0, 1.0, 1.0, 1.0,
     ]
 }
+=======
+>>>>>>> 3f877f810fbb42862d47b744f40b768fbdc05d48
 
 function initOptionState() {
     optionState = {
-        model : cube,            // cube, pyramid, interlocking_cube
+        model : cube,               // cube, pyramid, interlocking_cube
         projection : "orthogonal",  // orthogonal, oblique, perspective
         transformation : {
             translate   : [0, 0, 0],
