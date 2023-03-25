@@ -139,25 +139,25 @@
             ],
         
             "color" : [
-                1.0, 1.0, 1.0, 1.0
+                0.8313725490196079,1,0
             ]
     },
     
 
-    "projection" : "orthogonal",
+    "projection" : "oblique",
     
     
     "transformation" : {
         "rotate" : [
-            0, 0, 0
+            18, 47, 0
         ],
         
         "translate" : [
-            0, 0, 0
+            0.1,0.2,0
         ], 
         
         "scale" : [
-            1, 1, 1
+            0.9,1.2,1.2
         ]
     },
     
