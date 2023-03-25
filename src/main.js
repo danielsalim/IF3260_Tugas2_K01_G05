@@ -189,23 +189,23 @@ cube =                     // model/cube-EXAMPLE.json
         46, 47, 39, 39, 38, 46,
         39, 47, 44, 44, 36, 39,
 
-        //right cube outer
+        //left cube outer
         48, 49, 53, 53, 52, 48,
         49, 50, 54, 54, 53, 49,
         50, 51, 55, 55, 54, 50,
         55, 51, 48, 48, 52, 55, 
 
-        //right cube inner
+        //left cube inner
         56, 57, 61, 61, 60, 56,
         57, 58, 62, 62, 61, 57,
         58, 59, 63, 63, 62, 58,
         63, 59, 56, 56, 60, 63,
 
-        //wrapper of right cube (outer)
-        48, 56, 57, 57, 49, 48,
+        //wrapper of left cube (outer)
+        56, 48, 49, 49, 57, 56,
         50, 51, 59, 59, 58, 50, 
 
-        //wrapper of right cube (inner)
+        //wrapper of left cube (inner)
         52, 60, 61, 61, 53, 52,
         54, 62, 63, 63, 55, 54,
         55, 63, 60, 60, 52, 55,
