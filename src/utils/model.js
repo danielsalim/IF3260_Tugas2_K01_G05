@@ -2,7 +2,6 @@
  * TESTING MODEL 
  */
 
-// TO DO: cara nge fetch data model dari file json ke dalam variable model biar gak kopas kayak gini wkwk
 cube =                     
 {
     "vertices" : [
@@ -53,26 +52,174 @@ cube =
 
 
 
-pyramid =                  
+pyramid =
 {
     "vertices" : [
-        -0.5, -0.5,  0.5,
-         0.5, -0.5,  0.5,
-         0.0,  0.5,  0.0,
-        -0.5, -0.5, -0.5,
-         0.5, -0.5, -0.5,
-         0.0,  0.5,  0.0
+        //alas bawah
+        //alas bawah sisi bawah
+        -0.60, -0.60, 0.60, //bawah kiri, bawah kiri
+        0.60, -0.60, 0.60, //bawah kanan, bawah kanan
+        0.60, -0.60, 0.45, //bawah kanan, atas kanan
+        -0.60, -0.60, 0.45, //bawah kiri, atas kiri
+
+        //alas bawah sisi atas
+        -0.60, -0.60, -0.60, //atas kiri, atas kiri
+        0.60, -0.60, -0.60, //atas kanan, atas kanan
+        0.60, -0.60, -0.45, //atas kanan, bawah kanan
+        -0.60, -0.60, -0.45, //atas kiri, bawah kiri
+
+        //alas bawah sisi kiri
+        -0.60, -0.60, 0.60, //bawah kiri, bawah kiri
+        -0.60, -0.60, -0.60, //atas kiri, atas kiri
+        -0.45, -0.60, -0.60, //atas kiri, atas kanan
+        -0.45, -0.60, 0.60, //bawah kiri, bawah kanan
+
+        //alas bawah sisi kanan
+        0.60, -0.60, 0.60, //bawah kanan, bawah kanan
+        0.60, -0.60, -0.60, //atas kanan, atas kanan
+        0.45, -0.60, -0.60, //atas kanan, atas kiri
+        0.45, -0.60, 0.60, //bawah kanan, bawah kiri
+
+        //alas atas
+        //alas atas sisi bawah
+        -0.60, -0.45, 0.60, //bawah kiri, bawah kiri
+        0.60, -0.45, 0.60, //bawah kanan, bawah kanan
+        0.60, -0.45, 0.45, //bawah kanan, atas kanan
+        -0.60, -0.45, 0.45, //bawah kiri, atas kiri
+
+        //alas atas sisi atas
+        -0.60, -0.45, -0.60, //atas kiri, atas kiri
+        0.60, -0.45, -0.60, //atas kanan, atas kanan
+        0.60, -0.45, -0.45, //atas kanan, bawah kanan
+        -0.60, -0.45, -0.45, //atas kiri, bawah kiri
+
+        //alas atas sisi kiri
+        -0.60, -0.45, 0.60, //bawah kiri, bawah kiri
+        -0.60, -0.45, -0.60, //atas kiri, atas kiri
+        -0.45, -0.45, -0.60, //atas kiri, atas kanan
+        -0.45, -0.45, 0.60, //bawah kiri, bawah kanan
+
+        //alas atas sisi kanan
+        0.60, -0.45, 0.60, //bawah kanan, bawah kanan
+        0.60, -0.45, -0.60, //atas kanan, atas kanan
+        0.45, -0.45, -0.60, //atas kanan, atas kiri
+        0.45, -0.45, 0.60, //bawah kanan, bawah kiri
+
+        //alas sisi kiri luar
+        -0.60, -0.45, -0.60, //atas, atas kiri, atas kiri
+        -0.60, -0.60, -0.60, //bawah, atas kiri, atas kiri
+        -0.60, -0.60, 0.60, //bawah, bawah kiri, bawah kiri
+        -0.60, -0.45, 0.60, //atas, atas kiri, atas kanan
+
+        //alas sisi kanan luar
+        0.60, -0.45, -0.60, //atas, atas kanan, atas kanan
+        0.60, -0.60, -0.60, //bawah, atas kanan, atas kanan
+        0.60, -0.60, 0.60, //atas, atas kanan, atas kanan
+        0.60, -0.45, 0.60, //bawah, bawah kanan, bawah kanan
+
+        //alas sisi atas luar
+        -0.60, -0.45, -0.60, //atas, atas kiri, atas kiri
+        -0.60, -0.60, -0.60,//bawah, atas kiri, atas kiri
+        0.60, -0.45, -0.60, //atas, atas kanan, atas kanan
+        0.60, -0.60, -0.60,//bawah, atas kanan, atas kanan
+
+        //alas sisi bawah luar
+        -0.60, -0.60, 0.60, //bawah, bawah kiri, bawah kiri
+        -0.60, -0.45, 0.60, //atas, bawah kiri, bawah kiri
+        0.60, -0.60, 0.60, //bawah, bawah kanan, bawah kanan
+        0.60, -0.45, 0.60, //atas, bawah kanan, bawah kanan
+
+        //alas sisi kiri dalam
+        -0.45, -0.45, -0.45, //atas, atas kiri, bawah kanan
+        -0.45, -0.60, -0.45, //bawah, atas kiri, bawah kanan
+        -0.45, -0.60, 0.45, //bawah, bawah kiri, atas kanan
+        -0.45, -0.45, 0.45, //atas, bawah kiri, atas kanan
+
+        //alas sisi kanan dalam
+        0.45, -0.45, -0.45, //atas, atas kanan, bawah kiri
+        0.45, -0.60, -0.45, //bawah, atas kanan, bawah kiri
+        0.45, -0.60, 0.45, //bawah, bawah kanan, atas kiri
+        0.45, -0.45, 0.45, //atas, bawah kanan, atas kiri
+
+        //alas sisi atas dalam
+        -0.45, -0.45, -0.45, //atas, atas kiri, bawah kanan
+        -0.45, -0.60, -0.45, //bawah, atas kiri, bawah kanan
+        0.45, -0.60, -0.45, //bawah, atas kanan, bawah kiri
+        0.45, -0.45, -0.45, //atas, atas kanan, bawah kiri
+
+        //alas sisi bawah dalam
+        -0.45, -0.45, 0.45, //atas, bawah kiri, atas kanan
+        -0.45, -0.60, 0.45, //bawah, bawah kiri, atas kanan
+        0.45, -0.60, 0.45, //bawah, bawah kanan, atas kiri
+        0.45, -0.45, 0.45, //atas, bawah kanan, atas kiri
+
+        //puncak bawah kiri
+        -0.60, -0.45, 0.60, //atas, bawah kiri, bawah kiri 64
+        -0.45, -0.45, 0.60, //atas, bawah kiri, bawah kanan 65
+        -0.45, -0.45, 0.45, //atas, bawah kiri, atas kanan 66
+        -0.60, -0.45, 0.45, //atas, bawah kiri, atas kiri 67
+        0, 0.60, 0, //puncak atas 68
+        0, 0.45, 0, //puncak bawah 69
+
+        //puncak bawah kanan
+        0.60, -0.45, 0.60, //atas, bawah kanan, bawah kanan 70
+        0.45, -0.45, 0.60, //atas, bawah kanan, bawah kiri 71
+        0.45, -0.45, 0.45, //atas, bawah kanan, atas kiri 72
+        0.60, -0.45, 0.45, //atas, bawah kanan, atas kanan 73
+
+        //puncak atas kiri
+        -0.60, -0.45, -0.60, //atas, atas kiri, atas kiri 74
+        -0.45, -0.45, -0.60, //atas, atas kiri, atas kanan 75
+        -0.45, -0.45, -0.45, //atas, atas kiri, bawah kanan 76
+        -0.60, -0.45, -0.45, //atas, atas kiri, bawah kiri 77
+
+        //puncak atas kanan
+        0.60, -0.45, -0.60, //atas, atas kanan, atas kanan 78
+        0.45, -0.45, -0.60, //atas, atas kanan, atas kiri 79
+        0.45, -0.45, -0.45, //atas, atas kanan, bawah kiri 80
+        0.60, -0.45, -0.45, //atas, atas kanan, bawah kanan 81
     ],
     
     "indices" : [
-        0, 1, 2,
-        1, 4, 2,
-        4, 3, 2,
-        3, 0, 2,
-        0, 1, 5,
-        1, 4, 5,
-        4, 3, 5,
-        3, 0, 5
+        // alas bawah
+        2, 1, 0,   3, 2, 0, //alas bawah
+        5, 6, 4,   6, 7, 4, //alas atas
+        9, 10, 8,  10, 11, 8, //alas kiri
+        14, 13, 12, 15, 14, 12, //alas kanan
+
+        // alas atas
+        16, 17, 18,  16, 18, 19, //alas bawah
+        20, 22, 21,  20, 23, 22, //alas atas
+        24, 26, 25,  24, 27, 26, //alas kiri
+        28, 29, 30,  28, 30, 31, //alas kanan
+
+        // alas sisi luar
+        32, 33, 34,  32, 34, 35, // alas sisi kiri
+        38, 37, 36,  39, 38, 36, // alas sisi kanan
+        42, 41, 40,  42, 43, 41, // alas sisi atas
+        46, 45, 44,  46, 47, 45, // alas sisi bawah
+
+        // alas sisi dalam
+        50, 49, 48,  51, 50, 48, // alas sisi kiri
+        52, 53, 54,  52, 54, 55, // alas sisi kanan
+        58, 59, 56,  57, 58, 56, // alas sisi atas
+        60, 63, 62,  62, 61, 60, // alas sisi bawah
+
+        // bawah kiri ke puncak
+        64, 65, 68, 67, 64, 68, // bawah kiri luar ke puncak
+        65, 66, 68, 66, 67, 68, // bawah kiri dalam ke puncak
+
+        // bawah kanan ke puncak
+        68, 71, 70, 68, 70, 73, // bawah kanan luar ke puncak
+        68, 72, 71, 68, 73, 72, // bawah kanan dalam ke puncak
+
+        // atas kiri ke puncak
+        68, 75, 74, 68, 74, 77, // atas kiri luar ke puncak
+        68, 76, 75, 68, 77, 76, // atas kiri dalam ke puncak
+
+        // atas kanan ke puncak
+        78, 79, 68, 81, 78, 68, // atas kanan luar ke puncak
+        79, 80, 68, 80, 81, 68 // atas kanan dalam ke puncak
     ],
 
     "color" : [
